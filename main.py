@@ -6,7 +6,7 @@ import numpy as np
 
 # Vertex shader code
 vertex_shader = """
-#version 330
+#version 400
 in vec2 position;
 out vec2 fragCoord;
 void main()
@@ -18,33 +18,35 @@ void main()
 
 # Fragment shader code for Mandelbrot set
 fragment_shader = """
-#version 330
+#version 400
 in vec2 fragCoord;
 out vec4 outColor;
 
-uniform float zoom;
-uniform vec2 center;
+uniform double zoom;
+uniform dvec2 center;
 uniform int maxIter;
 
 void main()
 {
-    // Map pixel coordinate to complex plane
-    vec2 c = center + fragCoord * zoom;
-    vec2 z = vec2(0.0, 0.0);
+    // Map pixel coordinate to complex plane using double precision
+    dvec2 c = center + dvec2(fragCoord) * zoom;
+    dvec2 z = dvec2(0.0, 0.0);
     int i;
     for(i = 0; i < maxIter; i++)
     {
-        if(dot(z, z) > 4.0)
+        if(length(z) > 2.0)
             break;
-        z = vec2(
+        z = dvec2(
             z.x * z.x - z.y * z.y + c.x,
             2.0 * z.x * z.y + c.y
         );
     }
-    // Color mapping
-    float norm = float(i) / float(maxIter);
-    outColor = vec4(vec3(norm), 1.0);
+    // Smooth coloring
+    double smooth_iter = i + 1 - log(log(length(z))) / log(2.0);
+    double hue = 0.95 + 20.0 * smooth_iter / double(maxIter);
+    outColor = vec4(vec3(fract(hue)), 1.0);
 }
+
 """
 
 
@@ -104,8 +106,8 @@ def main():
 
     # Initial parameters
     zoom = 1.0
-    center = [0.0, 0.6]
-    max_iter = 1000
+    center = [-0.75, 0.1]
+    max_iter = 10000
     zoom_speed = 0.995  # Adjust for zoom speed
 
     clock = pygame.time.Clock()
