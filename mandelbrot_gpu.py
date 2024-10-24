@@ -27,6 +27,18 @@ uniform double scale;
 uniform int maxIter;
 uniform dvec2 resolution;
 
+// Gradient colors array
+const vec3 gradient[8] = vec3[](
+    vec3(0.3, 0.0, 0.2),  // Deep purple
+    vec3(0.5, 0.0, 0.5),  // Purple
+    vec3(0.8, 0.0, 0.5),  // Violet
+    vec3(0.9, 0.5, 0.2),  // Orange
+    vec3(0.9, 0.8, 0.2),  // Yellow
+    vec3(0.2, 0.6, 0.4),  // Greenish
+    vec3(0.2, 0.2, 0.8),  // Light Blue
+    vec3(0.0, 0.1, 0.5)   // Deep Blue
+);
+
 void main()
 {
     // Normalize pixel coordinates to [-1, 1]
@@ -39,30 +51,36 @@ void main()
     // Initialize z to (0, 0)
     dvec2 z = dvec2(0.0, 0.0);
     int i;
-    double iter = 0.0;
 
     // Mandelbrot iteration with double precision
     for (i = 0; i < maxIter; i++)
     {
         if (dot(z, z) > 4.0) break;
         z = dvec2(z.x * z.x - z.y * z.y + c.x, 2.0 * z.x * z.y + c.y);
-        iter += 1.0;
     }
 
     // Smooth coloring
+    float iter = float(i);
     if (i < maxIter)
     {
-        // Cast to float for log function
+        // Convert to float before passing to log
         float log_zn = log(float(dot(z, z))) / 2.0;
         float nu = log(log_zn / log(2.0)) / log(2.0);
-        iter = iter + 1.0 - double(nu);
+        iter = float(i) + 1.0 - nu;
     }
 
-    // Color mapping (convert to float for color calculations)
-    float color = float(iter / double(maxIter));
-    vec3 col = vec3(0.5 + 0.5 * cos(6.2831 * (color + vec3(0.0, 0.33, 0.67))));
-    outColor = vec4(col, 1.0);
+    // Determine color from gradient based on smooth iteration count
+    float t = fract(iter / float(maxIter));  // t is a value between 0 and 1
+    int idx1 = int(t * 7.0);  // Index of the first color in the gradient
+    int idx2 = (idx1 + 1) % 8; // Index of the next color in the gradient
+    float blend = t * 7.0 - float(idx1); // How much to blend between colors
+
+    vec3 color = mix(gradient[idx1], gradient[idx2], blend);  // Linear interpolation between gradient colors
+    color = pow(color, vec3(0.8)); // Optional gamma correction for more vivid colors
+
+    outColor = vec4(color, 1.0);
 }
+
 """
 
 
