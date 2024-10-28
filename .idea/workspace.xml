@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="810681bb-5046-43f9-9b6c-ec674b56300c" name="Changes" comment="fixed naming conventions" />
+    <list default="true" id="810681bb-5046-43f9-9b6c-ec674b56300c" name="Changes" comment="deleted files">
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,6 +22,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "OX-S"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/OX-S/PyOpenGL_Mandelbrot.git",
+    "accountId": "730ef670-b31f-45a5-8adc-12b1c1ccb01c"
+  }
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
 }</component>
@@ -165,7 +179,7 @@
       <updated>1729658510405</updated>
       <workItem from="1729658511658" duration="7251000" />
       <workItem from="1729742817707" duration="3553000" />
-      <workItem from="1730083392175" duration="1812000" />
+      <workItem from="1730083392175" duration="2321000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -223,7 +237,23 @@
       <option name="project" value="LOCAL" />
       <updated>1730085095211</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="added comments">
+      <option name="closed" value="true" />
+      <created>1730085263283</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1730085263283</updated>
+    </task>
+    <task id="LOCAL-00009" summary="deleted files">
+      <option name="closed" value="true" />
+      <created>1730085291799</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1730085291799</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -248,7 +278,9 @@
     <MESSAGE value="updated colors" />
     <MESSAGE value="Got 3d Lighting working (wip)" />
     <MESSAGE value="fixed naming conventions" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed naming conventions" />
+    <MESSAGE value="added comments" />
+    <MESSAGE value="deleted files" />
+    <option name="LAST_COMMIT_MESSAGE" value="deleted files" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/MandelbrotSetV2$main.coverage" NAME="mainbackup Coverage Results" MODIFIED="1729739050049" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
