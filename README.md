@@ -12,3 +12,9 @@ This project is a work in progress (WIP). While it does visualize the set, there
 * Upgrade the project to support double-precision 
 * Add color customization
 
+  
+### Sample Images
+As you can see there are some bugs that need fixing
+
+![Image 1](Images/image.png)
+![Image 2](Images/image_1.png)
