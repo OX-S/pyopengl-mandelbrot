@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="810681bb-5046-43f9-9b6c-ec674b56300c" name="Changes" comment="Got 3d Lighting working (wip)">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mandelbrot_gpu.py" beforeDir="false" afterPath="$PROJECT_DIR$/mandelbrot_gpu.py" afterDir="false" />
-    </list>
+    <list default="true" id="810681bb-5046-43f9-9b6c-ec674b56300c" name="Changes" comment="fixed naming conventions" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -32,22 +29,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.main.executor&quot;: &quot;Run&quot;,
-    &quot;Python.mainbackup.executor&quot;: &quot;Run&quot;,
-    &quot;Python.mandelbrot_cpu.executor&quot;: &quot;Run&quot;,
-    &quot;Python.mandelbrot_gpu.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.main.executor": "Run",
+    "Python.mainbackup.executor": "Run",
+    "Python.mandelbrot_cpu.executor": "Run",
+    "Python.mandelbrot_gpu.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Python.mandelbrot_gpu">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="MandelbrotSetV2" />
@@ -167,7 +165,7 @@
       <updated>1729658510405</updated>
       <workItem from="1729658511658" duration="7251000" />
       <workItem from="1729742817707" duration="3553000" />
-      <workItem from="1730083392175" duration="1653000" />
+      <workItem from="1730083392175" duration="1812000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -217,7 +215,15 @@
       <option name="project" value="LOCAL" />
       <updated>1730084694028</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="fixed naming conventions">
+      <option name="closed" value="true" />
+      <created>1730085095211</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1730085095211</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -241,7 +247,8 @@
     <MESSAGE value="backup here, got the GPU version working" />
     <MESSAGE value="updated colors" />
     <MESSAGE value="Got 3d Lighting working (wip)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Got 3d Lighting working (wip)" />
+    <MESSAGE value="fixed naming conventions" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed naming conventions" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/MandelbrotSetV2$main.coverage" NAME="mainbackup Coverage Results" MODIFIED="1729739050049" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

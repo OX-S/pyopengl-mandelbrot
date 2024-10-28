@@ -15,8 +15,7 @@ void main()
 }
 """
 
-# Fragment shader with double-precision calculations
-# Fragment shader with corrected function calls
+
 fragment_shader = """
 #version 400 core
 
