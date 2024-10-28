@@ -59,6 +59,8 @@ void main()
     // init z and its derivative dz/dc
     vec2 z = vec2(0.0, 0.0);
     vec2 dz = vec2(1.0, 0.0); // For derivative dz/dc
+    
+    
 
     int i;
     float iter = 0.0;
@@ -163,8 +165,32 @@ void main()
 }
 """
 
+
+def init_shader():
+    # Compile shaders
+    try:
+        program = compileProgram(
+            compileShader(vertex_shader, GL_VERTEX_SHADER),
+            compileShader(fragment_shader, GL_FRAGMENT_SHADER)
+        )
+    except RuntimeError as e:
+        print("Shader compilation or linking failed.")
+        print(e)
+        pygame.quit()
+        quit()
+    return program
+
+
 class MandelbrotViewer:
     def __init__(self, width=800, height=600):
+        self.screen_VAO = None
+        self.texture = None
+        self.fbo = None
+        self.hi_res_height = None
+        self.VBO = None
+        self.hi_res_width = None
+        self.VAO = None
+        self.screen_program = None
         pygame.init()
 
         pygame.display.gl_set_attribute(pygame.GL_CONTEXT_MAJOR_VERSION, 4)
@@ -180,33 +206,19 @@ class MandelbrotViewer:
         glsl_version = glGetString(GL_SHADING_LANGUAGE_VERSION).decode()
         print("GLSL version:", glsl_version)
 
-        self.program = self.init_shader()
+        self.program = init_shader()
         self.init_quad()
         self.init_fbo()
         self.init_screen_shader()
         self.init_screen_quad()
 
-        self.maxIter = 10000
+        self.maxIter = 25000
         self.scale = 2.5  # Initial Scale
         self.center = np.array([-0.75, 0.0], dtype=np.float64) # tried to add double precision (wip)
         self.dragging = False
         self.last_mouse_pos = None
 
         self.main_loop()
-
-    def init_shader(self):
-        # Compile shaders
-        try:
-            program = compileProgram(
-                compileShader(vertex_shader, GL_VERTEX_SHADER),
-                compileShader(fragment_shader, GL_FRAGMENT_SHADER)
-            )
-        except RuntimeError as e:
-            print("Shader compilation or linking failed.")
-            print(e)
-            pygame.quit()
-            quit()
-        return program
 
     def init_quad(self):
 
@@ -285,8 +297,8 @@ class MandelbrotViewer:
         self.screen_VAO = glGenVertexArrays(1)
         glBindVertexArray(self.screen_VAO)
 
-        VBO = glGenBuffers(1)
-        glBindBuffer(GL_ARRAY_BUFFER, VBO)
+        vbo = glGenBuffers(1)
+        glBindBuffer(GL_ARRAY_BUFFER, vbo)
         glBufferData(GL_ARRAY_BUFFER, vertices.nbytes, vertices, GL_STATIC_DRAW)
 
         # Position attribute
@@ -295,9 +307,9 @@ class MandelbrotViewer:
         glVertexAttribPointer(position, 2, GL_FLOAT, GL_FALSE, 4 * ctypes.sizeof(ctypes.c_float), ctypes.c_void_p(0))
 
         # TexCoord attribute
-        texCoord = glGetAttribLocation(self.screen_program, 'texCoord')
-        glEnableVertexAttribArray(texCoord)
-        glVertexAttribPointer(texCoord, 2, GL_FLOAT, GL_FALSE, 4 * ctypes.sizeof(ctypes.c_float), ctypes.c_void_p(2 * ctypes.sizeof(ctypes.c_float)))
+        tex_coord = glGetAttribLocation(self.screen_program, 'texCoord')
+        glEnableVertexAttribArray(tex_coord)
+        glVertexAttribPointer(tex_coord, 2, GL_FLOAT, GL_FALSE, 4 * ctypes.sizeof(ctypes.c_float), ctypes.c_void_p(2 * ctypes.sizeof(ctypes.c_float)))
 
         glBindBuffer(GL_ARRAY_BUFFER, 0)
         glBindVertexArray(0)

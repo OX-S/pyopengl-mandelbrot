@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="810681bb-5046-43f9-9b6c-ec674b56300c" name="Changes" comment="updated colors">
+    <list default="true" id="810681bb-5046-43f9-9b6c-ec674b56300c" name="Changes" comment="Got 3d Lighting working (wip)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mandelbrot_gpu.py" beforeDir="false" afterPath="$PROJECT_DIR$/mandelbrot_gpu.py" afterDir="false" />
     </list>
@@ -167,7 +167,7 @@
       <updated>1729658510405</updated>
       <workItem from="1729658511658" duration="7251000" />
       <workItem from="1729742817707" duration="3553000" />
-      <workItem from="1730083392175" duration="867000" />
+      <workItem from="1730083392175" duration="1653000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -209,7 +209,15 @@
       <option name="project" value="LOCAL" />
       <updated>1729743827998</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Got 3d Lighting working (wip)">
+      <option name="closed" value="true" />
+      <created>1730084694028</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1730084694028</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -232,11 +240,12 @@
     <MESSAGE value="GPU version" />
     <MESSAGE value="backup here, got the GPU version working" />
     <MESSAGE value="updated colors" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated colors" />
+    <MESSAGE value="Got 3d Lighting working (wip)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Got 3d Lighting working (wip)" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/MandelbrotSetV2$main.coverage" NAME="mainbackup Coverage Results" MODIFIED="1729739050049" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/MandelbrotSetV2$mandelbrot_gpu.coverage" NAME="mandelbrot_gpu Coverage Results" MODIFIED="1730083980451" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/MandelbrotSetV2$mandelbrot_gpu.coverage" NAME="mandelbrot_gpu Coverage Results" MODIFIED="1730085055599" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/MandelbrotSetV2$mandelbrot_cpu.coverage" NAME="mandelbrot_cpu Coverage Results" MODIFIED="1729738779815" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
