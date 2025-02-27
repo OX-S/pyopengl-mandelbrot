@@ -73,15 +73,11 @@ void main()
     {
         if (length(z) > 2.0) break;
 
-      
-        stripeSum += sin(k * atan(z.y, z.x));
-
         dz = 2.0 * complex_mul(z, dz) + vec2(1.0, 0.0);
-
         z = complex_mul(z, z) + c;
     }
 
-    // smooth coloring
+    // Smooth coloring (compute iter as before)
     if (i < maxIter)
     {
         float log_zn = log(length(z)) / 2.0;
@@ -93,19 +89,11 @@ void main()
         iter = float(i);
     }
 
-    // stripe average
-    float stripeAverage = stripeSum / iter;
-    float stripeColor = 0.5 + 0.5 * stripeAverage;
+    // Compute stripe effect directly from the smooth iteration count
+    float stripeColor = 0.5 + 0.5 * sin(k * iter);
 
-    // compute normal using screen space derivatives
-    float dx = dFdx(iter);
-    float dy = dFdy(iter);
-    vec3 normal = normalize(vec3(-dx, -dy, 1.0));
 
-    // lighting 
-    float diffuse = max(dot(normal, lightDir), 0.0);
-    vec3 halfDir = normalize(lightDir + viewDir);
-    float specular = pow(max(dot(normal, halfDir), 0.0), shininess);
+
 
     // step shading 
     float steps = 500; // num of steps
@@ -122,9 +110,7 @@ void main()
     // stripe coloring
     color = mix(color, vec3(stripeColor), 0.5);
 
-    // lighting
-    color *= diffuse + 0.2; // Add ambient term
-    color += vec3(specular);
+
 
     // step shading
     color = floor(color * steps) / steps;
