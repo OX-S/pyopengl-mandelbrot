@@ -22,12 +22,14 @@ uniform float zoom;
 uniform int max_iter;     
 uniform float ncycle;     
 
-uniform vec3 lightDir;    // directional light (should be normalized)
+// Uniforms for lighting and dither effect
+uniform vec3 lightDir;
 uniform float ambient;
 uniform float diffuse;
 uniform float specular;
 uniform float shininess;
 
+// Your mandelbrot function remains unchanged (or use your distance estimator version)
 float mandelbrot(vec2 c) {
     vec2 z = vec2(0.0);
     int i;
@@ -49,29 +51,51 @@ float mandelbrot(vec2 c) {
     return iter;
 }
 
-void main(){
-    vec2 uv = (gl_FragCoord.xy - 0.5 * resolution) / resolution.y;
-    vec2 c = uv / zoom + pan;
+void main() {
+    // Define 4 sub-pixel offsets for 2x2 supersampling
+    vec2 offsets[4];
+    offsets[0] = vec2(-0.25, -0.25);
+    offsets[1] = vec2( 0.25, -0.25);
+    offsets[2] = vec2(-0.25,  0.25);
+    offsets[3] = vec2( 0.25,  0.25);
 
-    float iter = mandelbrot(c);
-    float height = iter;
+    vec3 colorSum = vec3(0.0);
+    const int sampleCount = 4;
+    
+    // Loop over each sample
+    for (int i = 0; i < sampleCount; i++) {
+        // Offset the fragment coordinate by a sub-pixel offset
+        vec2 sampleCoord = gl_FragCoord.xy + offsets[i];
+        // Map to normalized coordinates on the complex plane
+        vec2 uv = (sampleCoord - 0.5 * resolution) / resolution.y;
+        vec2 c = uv / zoom + pan;
 
-    vec3 n = normalize(vec3(dFdx(height), dFdy(height), 1.0));
+        // Compute the Mandelbrot iteration for this sample
+        float iter = mandelbrot(c);
 
-    float t = mod(iter, ncycle) / ncycle;
+        // Apply dither for smoother coloring (with increased strength if desired)
+        float dither = fract(sin(dot(sampleCoord, vec2(12.9898, 78.233))) * 43758.5453);
+        float t = (mod(iter, ncycle) + 0.4 * dither) / ncycle;  // Increased dither multiplier from 0.2 to 0.4
 
-    vec3 baseColor = vec3(0.5 + 0.5 * cos(6.28318 * t + vec3(0.0, 0.5, 1.0)));
+        // Example color gradient: using cosine function for smooth color cycling
+        vec3 sampleColor = vec3(0.5 + 0.5 * cos(6.28318 * t + vec3(0.0, 0.5, 1.0)));
+        colorSum += sampleColor;
+    }
 
-    // Lighting: combine Lambert (diffuse) with Blinn–Phong (specular)
+    // Average the samples
+    vec3 baseColor = colorSum / float(sampleCount);
+
+    // (Optional) Apply simple lighting using a fixed normal since we're not computing one from derivatives here
     vec3 L = normalize(lightDir);
-    vec3 V = vec3(0.0, 0.0, 1.0);  // viewer looking along +Z
+    vec3 V = vec3(0.0, 0.0, 1.0);  // Viewer looks along +Z
     vec3 H = normalize(L + V);
-    float lambert = max(dot(n, L), 0.0);
-    float spec = pow(max(dot(n, H), 0.0), shininess);
+    float lambert  = max(dot(vec3(0.0, 0.0, 1.0), L), 0.0);
+    float specTerm = pow(max(dot(vec3(0.0, 0.0, 1.0), H), 0.0), shininess);
 
-    vec3 color = ambient * baseColor + diffuse * lambert * baseColor + specular * spec * vec3(1.0);
+    vec3 color = ambient * baseColor + diffuse * lambert * baseColor + specular * specTerm * vec3(1.0);
     outColor = vec4(color, 1.0);
 }
+
 """
 
 
