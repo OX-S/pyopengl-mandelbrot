@@ -60,9 +60,6 @@ void main(){
 
     float t = mod(iter, ncycle) / ncycle;
 
-    float steps = 10.0;
-    t = floor(t * steps) / steps;
-
     vec3 baseColor = vec3(0.5 + 0.5 * cos(6.28318 * t + vec3(0.0, 0.5, 1.0)));
 
     // Lighting: combine Lambert (diffuse) with Blinn–Phong (specular)
