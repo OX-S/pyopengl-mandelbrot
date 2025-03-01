@@ -94,7 +94,7 @@ def main():
     glUniform1d(ncycle_loc, 50.0)
     glUniform3d(lightDir_loc, 0.5, 0.5, 1.0)
     glUniform1d(ambient_loc, 0.2)
-    glUniform1d(diffuse_loc, 0.7)
+    glUniform1d(diffuse_loc, 0.1)
     glUniform1d(specular_loc, 0.5)
     glUniform1d(shininess_loc, 32.0)
 
